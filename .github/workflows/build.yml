@@ -124,6 +124,21 @@ jobs:
           pmbootstrap config user ${{ github.event.inputs.username }}
           pmbootstrap config locale ${{ github.event.inputs.locale }}
           yes '' | pmbootstrap init || true
+
+          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git
+          mv postmarketOS_xiaomi_earth/device-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
+          mv postmarketOS_xiaomi_earth/linux-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
+
+          yes '' | pmbootstrap init || true
+          pmbootstrap config device xiaomi-earth
+          pmbootstrap config extra_packages nano
+          pmbootstrap config hostname xiaomi-earth
+          pmbootstrap config systemd Nothing
+          pmbootstrap config ui xfce4
+          pmbootstrap config user user
+          pmbootstrap config locale en-us
+          yes '' | pmbootstrap init || true
+          
         shell: bash
 
       - name: Build image
