@@ -108,6 +108,9 @@ jobs:
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           PATH="$HOME/.local/bin:$PATH"
           pmbootstrap --version
+          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git
+          mv postmarketOS_xiaomi_earth/device-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
+          mv postmarketOS_xiaomi_earth/linux-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
         shell: bash
 
       - name: Create config and init pmbootstrap
@@ -131,11 +134,11 @@ jobs:
 
       - name: Compress images
         run: |
-          sudo mv ~/.local/var/pmbootstrap/chroot_rootfs_*/boot/lk2nd.img lk2nd.img
-          sudo mv ~/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/*.img rootfs.img
-          sudo chmod 777 lk2nd.img
+          sudo mv ~/.local/var/pmbootstrap/chroot_rootfs_*/boot/boot.img boot.img
+          sudo mv ~/.local/var/pmbootstrap/chroot_native/home/pmos/rootfs/*.img boot.img
+          sudo chmod 777 boot.img
           sudo chmod 777 rootfs.img
-          zip -9 -v "pmOS ${{ github.event.inputs.device }}.zip" lk2nd.img rootfs.img
+          zip -9 -v "pmOS ${{ github.event.inputs.device }}.zip" boot.img rootfs.img
           rm *.img
         shell: bash
 
