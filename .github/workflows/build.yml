@@ -7,7 +7,7 @@ on:
         description: "Select Device:"
         required: true
         type: string
-        default: "qcom-msm8953"
+        default: "earth"
       extras:
         description: "Select Extra Packages:"
         required: false
@@ -27,7 +27,7 @@ on:
         description: "Select Desktop Environment:"
         required: true
         type: string
-        default: "plasma-mobile"
+        default: "gnome-mobile"
       locale:
         description: "Select System Locale:"
         required: false
@@ -108,9 +108,10 @@ jobs:
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           PATH="$HOME/.local/bin:$PATH"
           pmbootstrap --version
-          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git
+          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git -b 20260102
           mv postmarketOS_xiaomi_earth/device-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
           mv postmarketOS_xiaomi_earth/linux-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
+          mv postmarketOS_xiaomi_earth/firmware-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
         shell: bash
 
       - name: Create config and init pmbootstrap
@@ -125,9 +126,10 @@ jobs:
           pmbootstrap config locale ${{ github.event.inputs.locale }}
           yes '' | pmbootstrap init || true
 
-          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git
+          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git -b 20260102
           mv postmarketOS_xiaomi_earth/device-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
           mv postmarketOS_xiaomi_earth/linux-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
+          mv postmarketOS_xiaomi_earth/firmware-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
 
           yes '' | pmbootstrap init || true
           pmbootstrap config device xiaomi-earth
