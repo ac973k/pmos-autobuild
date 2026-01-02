@@ -108,11 +108,6 @@ jobs:
           ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
           PATH="$HOME/.local/bin:$PATH"
           pmbootstrap --version
-          pmbootstrap init --noninteractive
-          git clone https://github.com/ac973k/postmarketOS_xiaomi_earth.git -b 20260102
-          mv postmarketOS_xiaomi_earth/device-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
-          mv postmarketOS_xiaomi_earth/linux-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
-          mv postmarketOS_xiaomi_earth/firmware-xiaomi-earth ~/.local/var/pmbootstrap/cache_git/pmaports/device/testing/
         shell: bash
 
       - name: Create config and init pmbootstrap
